@@ -1,0 +1,26 @@
+GIT
+  remote: https://github.com/DrTom/ansible-role-chromedriver
+  ref: master
+  sha: 435a639e9bf0db54d45c291bfd537f8841a76c4e
+  specs:
+    chromedriver (1.0.0)
+
+GIT
+  remote: https://github.com/ushu/ansible-chruby
+  ref: master
+  sha: 4a67e789ee90a4cdb29c3f656afdcdd8490117cb
+  specs:
+    chruby (0.0.0)
+
+GIT
+  remote: https://github.com/ushu/ansible-ruby-install
+  ref: master
+  sha: dc16216d8663dac9fd692f6299825adc97fb51df
+  specs:
+    ruby-install (0.0.0)
+
+DEPENDENCIES
+  chromedriver (>= 0)
+  chruby (>= 0)
+  ruby-install (>= 0)
+

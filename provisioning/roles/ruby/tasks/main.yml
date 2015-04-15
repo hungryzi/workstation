@@ -1,0 +1,25 @@
+---
+- name: Ruby dependencies
+  apt: name={{item}} state=installed
+  sudo: yes
+  with_items:
+    - curl
+    - git-core
+    - libcurl4-openssl-dev
+    - libsqlite3-dev
+    - libssl-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - sqlite3
+    - zlib1g-dev
+
+- name: Install rubies
+  command: >
+    chdir=/tmp
+    ruby-install ruby {{item}} --no-reinstall --src-dir /tmp
+  with_items: ruby_versions
+
+- name: Set default ruby
+  template: >
+    dest=~/.ruby-version
+    src=home/.ruby-version.j2

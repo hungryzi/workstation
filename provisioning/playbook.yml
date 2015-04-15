@@ -1,0 +1,92 @@
+---
+- hosts: all
+
+  pre_tasks:
+    - name: Update packages
+      apt: upgrade=yes update_cache=yes cache_valid_time=3600
+      sudo: yes
+      tags: ['update-packages']
+
+    - command: locale-gen en_US en_US.UTF-8
+      sudo: yes
+      tags: ['locale']
+
+    - command: dpkg-reconfigure locales
+      sudo: yes
+      tags: ['locale']
+
+    - lineinfile: >
+        dest=/etc/default/locale
+        state=present
+        line='LC_ALL="en_US.UTF-8"'
+      sudo: yes
+      tags: ['locale']
+
+    - name: Setup time zone
+      sudo: yes
+      file: >
+        dest=/etc/localtime
+        src=/usr/share/zoneinfo/Asia/Singapore
+        state=link
+        force=yes
+      tags: ['workstation']
+
+    - name: Setup host name (workstation)
+      sudo: yes
+      shell: >
+        echo workstation > /etc/hostname
+      tags: ['workstation']
+
+  roles:
+    - { role: chruby, tags: ['ruby'], chruby_version: '0.3.9' }
+    - { role: ruby, tags: ['ruby'] }
+    - { role: nodejs, tags: ['nodejs'] }
+    - { role: java, tags: ['java'] }
+    - { role: workstation, tags: ['workstation'] }
+    - { role: headless, tags: ['headless'] }
+    - { role: gui, tags: ['gui'] }
+    - { role: chrome, tags: ['chrome'] }
+    - { role: chromedriver, tags: ['chromedriver'], chromedriver_version: '2.13', sudo: yes }
+    - { role: android, tags: ['android'] }
+    - { role: mongodb, tags: ['mongodb'] }
+
+  tasks:
+    - shell: bash -lc 'gem list'
+      register: gem_list
+      tags: ['gems']
+
+    - name: Update gem
+      command: bash -lc 'gem update --system'
+      tags: ['gems']
+
+    - name: Install default ruby gems
+      command: bash -lc 'gem install {{item}}'
+      when: "'{{item}}' not in '{{gem_list.stdout}}'"
+      with_items:
+        - bundler
+        - pry
+        - git-pair
+      tags: ['gems']
+
+    - name: Find current npm
+      shell: sudo -iu $USER which npm
+      register: npm_search
+      tags: ['nodejs']
+
+    - name: Install default node packages
+      npm: >
+        global=yes
+        name={{item}}
+        executable={{npm_search.stdout}}
+      with_items:
+        - npm
+        - bower
+        - grunt-cli
+      tags: ['nodejs']
+
+    - name: Required packages
+      apt: name={{item}} state=installed
+      sudo: yes
+      with_items:
+        - s3cmd
+      tags: ['packages']

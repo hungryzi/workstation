@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site "https://galaxy.ansible.com/api/v1"
+
+role "chromedriver", github: "DrTom/ansible-role-chromedriver"
+role "chruby",       github: "ushu/ansible-chruby"
+role "ruby-install", github: "ushu/ansible-ruby-install"

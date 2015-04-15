@@ -1,0 +1,44 @@
+---
+- name: tmate repo key
+  apt_key: keyserver=keyserver.ubuntu.com id=C3EBC003
+  sudo: true
+
+- name: tmqte repo
+  apt_repository: repo='ppa:nviennot/tmate'
+  sudo: true
+
+- name: Install default packages
+  apt: name={{item}} state=installed
+  sudo: yes
+  with_items:
+    - tree
+    - git
+    - curl
+    - wget
+    - vim
+    - tmux
+    - tmate
+    - ack-grep
+    - imagemagick
+
+- name: Sync dotfiles
+  copy: >
+    src=dotfiles/
+    dest=~/
+
+- name: Setup Vundle
+  git: >
+    repo=https://github.com/gmarik/Vundle.vim.git
+    dest=~/.vim/bundle/Vundle.vim
+    update=yes
+
+- name: Determine whether vim plugins are already installed
+  stat: path=~/.vim/bundle/nerdtree
+  register: plugins
+
+- name: Install Vim plugins
+  command: vim +PluginInstall +qall
+  when: not plugins.stat.exists
+
+- name: Working dir
+  file: path=~/workspace state=directory
