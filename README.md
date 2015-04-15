@@ -1,9 +1,9 @@
 Setup
 =====
-1. Install [VirtualBox](https://www.virtualbox.org/)
-1. Install [Vagrant](https://www.vagrantup.com/)
+1. Install [VirtualBox](https://www.virtualbox.org/) (tested with 4.3.20)
+1. Install [Vagrant](https://www.vagrantup.com/) (tested with 1.7.2)
+1. Install [Ansible](http://www.ansible.com/home) (tested with 1.8.2)
 1. Clone this repo
-1. `git submodule init && git submodule update`
 1. `gem install librarian-ansible`
 1. `librarian-ansible install`
 1. Review the roles to provision in ./Vagrant file (ansible.tags)
