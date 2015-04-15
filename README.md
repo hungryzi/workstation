@@ -20,6 +20,7 @@ Use `ssh-add` to add your github key(s) to the authentication agent.
 Then login to the box: `vagrant ssh`
 
 In the box:
+
 1. `cd workspace`
 1. `git@github.com:GIVESocialMovement/giviki2.git giveasia`
 1. `cd giveasia`
