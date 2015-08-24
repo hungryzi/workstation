@@ -9,6 +9,7 @@ Setup
 1. Review the roles to provision in ./Vagrant file (ansible.tags)
 1. `vagrant up`
 1. `vagrant provision` in case of any errors with provisioning
+1. `vagrant reload`
 
 Optional Setup
 --------------
