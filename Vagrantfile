@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.extra_vars = {
       ruby_versions: ['2.0.0', '2.2.2'],
       ruby_default: '2.2.2',
-      chromedriver_version: '2.15',
+      chromedriver_version: '2.18',
     }
 
     ansible.tags = [
