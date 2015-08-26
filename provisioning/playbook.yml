@@ -48,6 +48,7 @@
     - { role: chrome, tags: ['chrome'] }
     - { role: chromedriver, tags: ['chromedriver'], chromedriver_version: '2.13', sudo: yes }
     - { role: mongodb, tags: ['mongodb'] }
+    - { role: swapfile, tags: ['swapfile'], sudo: yes }
 
   tasks:
     - shell: bash -lc 'gem list'

@@ -26,6 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ruby_versions: ['2.0.0', '2.2.2'],
       ruby_default: '2.2.2',
       chromedriver_version: '2.18',
+      swapfile_size: '2048MB',
     }
 
     ansible.tags = [
@@ -41,6 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       'packages',
       'chrome',
       'chromedriver',
+      'swapfile',
     ]
   end
 
