@@ -8,6 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.vm.network "forwarded_port", guest: 1080, host: 1080
+  config.vm.network "forwarded_port", guest: 8982, host: 8982
   config.ssh.forward_agent = true
 
   config.vm.provider "virtualbox" do |vb|
