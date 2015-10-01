@@ -43,6 +43,12 @@
 - name: Working dir
   file: path=~/workspace state=directory
 
+- name: make vim the default editor
+  lineinfile: >
+    dest=~/.profile
+    line="export EDITOR=/usr/bin/vim"
+    state=present
+
 - name: bash-git-prompt
   git: >
     repo=https://github.com/magicmonty/bash-git-prompt
