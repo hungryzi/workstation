@@ -27,6 +27,7 @@ Bundle 'tpope/vim-obsession.git'
 Bundle 'tpope/vim-rails.git'
 Bundle 'benmills/vimux'
 Bundle 'groenewege/vim-less'
+Bundle 'ngmy/vim-rubocop'
 
 " Prevents some security exploits
 set modelines=0
