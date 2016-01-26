@@ -88,5 +88,6 @@
       apt: name={{item}} state=installed
       sudo: yes
       with_items:
+        - cmake
         - s3cmd
       tags: ['packages']
