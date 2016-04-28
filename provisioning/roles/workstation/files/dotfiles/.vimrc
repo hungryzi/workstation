@@ -1,33 +1,50 @@
-" It's Vim - not Vi
-set nocompatible
-filetype off
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle
 " required!
-Bundle 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'corntrace/bufexplorer.git'
-Bundle 'digitaltoad/vim-jade.git'
-Bundle 'kchmck/vim-coffee-script.git'
-Bundle 'kien/ctrlp.vim.git'
-Bundle 'mileszs/ack.vim.git'
-Bundle 'pangloss/vim-javascript'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'scrooloose/nerdtree.git'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'thoughtbot/vim-rspec.git'
-Bundle 'tpope/vim-commentary.git'
-Bundle 'tpope/vim-dispatch.git'
-Bundle 'tpope/vim-endwise.git'
-Bundle 'tpope/vim-fugitive.git'
-Bundle 'tpope/vim-obsession.git'
-Bundle 'tpope/vim-rails.git'
-Bundle 'benmills/vimux'
-Bundle 'groenewege/vim-less'
-Bundle 'ngmy/vim-rubocop'
+Plugin 'corntrace/bufexplorer.git'
+Plugin 'digitaltoad/vim-jade.git'
+Plugin 'kchmck/vim-coffee-script.git'
+Plugin 'kien/ctrlp.vim.git'
+Plugin 'mileszs/ack.vim.git'
+Plugin 'pangloss/vim-javascript'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'thoughtbot/vim-rspec.git'
+Plugin 'tpope/vim-commentary.git'
+Plugin 'tpope/vim-dispatch.git'
+Plugin 'tpope/vim-endwise.git'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'tpope/vim-obsession.git'
+Plugin 'tpope/vim-rails.git'
+Plugin 'benmills/vimux'
+Plugin 'groenewege/vim-less'
+Plugin 'ngmy/vim-rubocop'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 " Prevents some security exploits
 set modelines=0
