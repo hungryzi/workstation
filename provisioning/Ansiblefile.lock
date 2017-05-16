@@ -6,6 +6,13 @@ GIT
     chromedriver (1.0.0)
 
 GIT
+  remote: https://github.com/geerlingguy/ansible-role-postgresql
+  ref: master
+  sha: 3287c51eab31cb7e18a0667c9f9339cfa80dcee5
+  specs:
+    postgres (0.0.0)
+
+GIT
   remote: https://github.com/kamaln7/ansible-swapfile
   ref: master
   sha: 8eb0e18d90a7f25b6658fbf56bcba01b84a664fc
@@ -13,22 +20,15 @@ GIT
     swapfile (0.0.0)
 
 GIT
-  remote: https://github.com/ushu/ansible-chruby
+  remote: https://github.com/rvm/rvm1-ansible
   ref: master
-  sha: 4a67e789ee90a4cdb29c3f656afdcdd8490117cb
+  sha: 72552c313965c1c36361a56fd89d281c8ab6986b
   specs:
-    chruby (0.0.0)
-
-GIT
-  remote: https://github.com/ushu/ansible-ruby-install
-  ref: master
-  sha: dc16216d8663dac9fd692f6299825adc97fb51df
-  specs:
-    ruby-install (0.0.0)
+    rvm (0.0.0)
 
 DEPENDENCIES
   chromedriver (>= 0)
-  chruby (>= 0)
-  ruby-install (>= 0)
+  postgres (>= 0)
+  rvm (>= 0)
   swapfile (>= 0)
 

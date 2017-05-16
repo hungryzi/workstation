@@ -4,6 +4,6 @@
 site "https://galaxy.ansible.com/api/v1"
 
 role "chromedriver", github: "DrTom/ansible-role-chromedriver"
-role "chruby",       github: "ushu/ansible-chruby"
-role "ruby-install", github: "ushu/ansible-ruby-install"
+role "postgres",     github: "geerlingguy/ansible-role-postgresql"
+role "rvm",          github: "rvm/rvm1-ansible"
 role "swapfile",     github: "kamaln7/ansible-swapfile"
