@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: rvm, tags: ruby, rvm1_user: root, rvm1_rubies: {{rvm1_rubies}}, rvm1_default_ruby_version: {{rvm1_default_ruby_version}} }

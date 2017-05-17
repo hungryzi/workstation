@@ -4,51 +4,65 @@
   pre_tasks:
     - name: Update packages
       apt: upgrade=yes update_cache=yes cache_valid_time=3600
-      sudo: yes
-      tags: ['update-packages']
+      become: yes
+      tags: ['packages']
+
+    - name: Required packages
+      apt: name={{item}} state=installed
+      become: yes
+      with_items:
+        - curl
+        - git
+      tags: ['packages']
 
     - command: locale-gen en_US en_US.UTF-8
-      sudo: yes
-      tags: ['locale']
-
-    - command: dpkg-reconfigure locales
-      sudo: yes
+      become: yes
       tags: ['locale']
 
     - lineinfile: >
         dest=/etc/default/locale
         state=present
         line='LC_ALL="en_US.UTF-8"'
-      sudo: yes
+      become: yes
       tags: ['locale']
 
     - name: Setup time zone
-      sudo: yes
+      become: yes
       file: >
         dest=/etc/localtime
-        src=/usr/share/zoneinfo/Asia/Singapore
+        src=/usr/share/zoneinfo/Asia/Ho_Chi_Minh
         state=link
         force=yes
       tags: ['workstation']
 
     - name: Setup host name (workstation)
-      sudo: yes
+      become: yes
       shell: >
         echo workstation > /etc/hostname
       tags: ['workstation']
 
   roles:
-    - { role: chruby, tags: ['ruby'], chruby_version: '0.3.9' }
-    - { role: ruby, tags: ['ruby'] }
-    - { role: nodejs, tags: ['nodejs'] }
-    - { role: java, tags: ['java'] }
-    - { role: workstation, tags: ['workstation'] }
-    - { role: headless, tags: ['headless'] }
-    - { role: gui, tags: ['gui'] }
-    - { role: chrome, tags: ['chrome'] }
-    - { role: chromedriver, tags: ['chromedriver'], chromedriver_version: '2.13', sudo: yes }
-    - { role: mongodb, tags: ['mongodb'] }
-    - { role: swapfile, tags: ['swapfile'], sudo: yes }
+    - {
+      role: postgresql,
+      tags: ['postgresql'],
+      become: yes
+    }
+    - {
+      role: rvm,
+      tags: ['ruby'],
+      rvm1_user: vagrant,
+      rvm1_rubies: rvm1_rubies,
+      rvm1_default_ruby_version: rvm1_default_ruby_version
+    }
+    - {
+      role: nodejs,
+      tags: ['nodejs'],
+      nodejs_version: nodejs_version,
+    }
+    - {
+      role: workstation,
+      tags: ['workstation']
+    }
 
   tasks:
     - shell: bash -lc 'gem list'
@@ -67,27 +81,3 @@
         - pry
         - tmuxinator
       tags: ['gems']
-
-    - name: Find current npm
-      shell: sudo -iu $USER which npm
-      register: npm_search
-      tags: ['nodejs']
-
-    - name: Install default node packages
-      npm: >
-        global=yes
-        name={{item}}
-        executable={{npm_search.stdout}}
-      with_items:
-        - npm
-        - bower
-        - grunt-cli
-      tags: ['nodejs']
-
-    - name: Required packages
-      apt: name={{item}} state=installed
-      sudo: yes
-      with_items:
-        - cmake
-        - s3cmd
-      tags: ['packages']

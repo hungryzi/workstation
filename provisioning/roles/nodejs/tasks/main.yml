@@ -1,7 +1,7 @@
 ---
 - name: Dependencies
   apt: name={{ item }} state=installed
-  sudo: yes
+  become: yes
   with_items:
     - build-essential
     - git
@@ -21,7 +21,7 @@
     state=present
 
 - name: Install nodejs
-  command: sudo -iu $USER nvm install 0.10
+  command: sudo -iu $USER nvm install {{nodejs_version}}
 
 - name: Set default nodejs
-  command: sudo -iu $USER nvm alias default 0.10
+  command: sudo -iu $USER nvm alias default {{nodejs_version}}
