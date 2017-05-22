@@ -75,7 +75,7 @@
 
     - name: Install default ruby gems
       command: bash -lc 'gem install {{item}}'
-      when: "'{{item}}' not in '{{gem_list.stdout}}'"
+      when: item not in gem_list.stdout
       with_items:
         - bundler
         - pry

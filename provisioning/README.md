@@ -1,4 +1,4 @@
-Setup (Ubuntu 14.04)
+Setup (Ubuntu 16.04 64)
 ===================
 1. `sudo apt-get install ruby ansible`
 1. `gem install librarian-ansible`

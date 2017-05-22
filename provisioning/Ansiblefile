@@ -3,5 +3,5 @@
 
 site "https://galaxy.ansible.com/api/v1"
 
-role "postgresql",   github: "geerlingguy/ansible-role-postgresql"
-role "rvm",          github: "rvm/rvm1-ansible"
+role "postgresql",      github: "geerlingguy/ansible-role-postgresql"
+role "rvm",             github: "rvm/rvm1-ansible"

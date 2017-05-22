@@ -5,15 +5,13 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.network "forwarded_port", guest: 1080, host: 1080
-  config.vm.network "forwarded_port", guest: 8982, host: 8982
+  config.vm.box = "debian/jessie64"
+  config.vm.network "forwarded_port", guest: 3000, host: 3000 # rails
   config.ssh.forward_agent = true
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 2048
-    vb.cpus   = 2
+    vb.memory = 1024
+    vb.cpus   = 1
   end
 
   config.vm.provision "ansible" do |ansible|
@@ -24,26 +22,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
 
     ansible.extra_vars = {
-      ruby_versions: ['2.0.0', '2.2.2'],
-      ruby_default: '2.2.2',
-      chromedriver_version: '2.19',
-      swapfile_size: '2048MB',
+      rvm1_rubies: ['ruby-2.3.1', 'ruby-2.4.1'],
+      rvm1_default_ruby_version: '2.3.1',
+      postgresql_version: '9.6.3',
+      postgresql_users: [
+        name: 'vagrant',
+        role_attr_flags: 'createdb'
+      ],
+      nodejs_version: '7.10',
+      verbose: true,
     }
 
     ansible.tags = [
-      'update-packages',
+      'packages',
       'locale',
-      'java',
+      'workstation',
       'ruby',
       'gems',
+      'postgresql',
       'nodejs',
-      'workstation',
-      'headless',
-      'mongodb',
-      'packages',
-      'chrome',
-      'chromedriver',
-      'swapfile',
     ]
   end
 

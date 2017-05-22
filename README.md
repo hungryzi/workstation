@@ -23,6 +23,6 @@ Then login to the box: `vagrant ssh`
 In the box:
 
 1. `cd workspace`
-1. `git clone git@github.com:GIVESocialMovement/giviki2.git giveasia`
-1. `cd giveasia`
+1. `git clone .. REPO_NAME`
+1. `cd REPO_NAME`
 1. `less README.md`
